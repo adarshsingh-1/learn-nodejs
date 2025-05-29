@@ -1,12 +1,39 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
 const fs = require('fs');
+const { log } = require('console');
 
 
 const app = express();
 const PORT = 8000;
 //middleware or plugin
 app.use(express.urlencoded({ extended: false }));
+
+
+// app.use((req, res, next) => {
+//     console.log("Hello from middleware 1");
+//     // return res.json({msg: "Hello from middleware 1"});
+//     req.myUsername = "John Doe";
+
+//     next();
+// })
+
+app.use((req, res, next) => {
+    fs.appendFile('log.txt',`${Date.now()}:${req.ip} ${req.method} ${req.path}\n`, 
+        (err, data) =>{
+            next();
+        }
+    )
+})
+
+// app.use((req, res, next) => {
+//     console.log("Hello from middleware 2", req.myUsername);
+//     //db query
+//     //credit card info
+//     // return res.json({msg: "Hello from middleware 2"});
+//     next();
+//     // return res.end("Hello from middleware 2");
+// })
 
 
 
@@ -23,6 +50,8 @@ app.get('/users' ,(req, res) => {
 // REST API
 //return a json object with all users
 app.get('/api/users', (req, res) => {
+    console.log("I am in get route", req.myUsername);
+    
     return res.json(users);
 });
 
