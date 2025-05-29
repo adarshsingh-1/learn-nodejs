@@ -1,0 +1,5 @@
+1748525344883: GET /api/users
+1748525358322: GET /api/users/5
+1748525366621: GET /api/users/59
+1748525414286: POST /api/users
+1748525495078:::1 POST /api/users ip 1 becoz ur on local host
