@@ -1,0 +1,16 @@
+{
+  "name": "05httpheadersandstatuscode",
+  "version": "1.0.0",
+  "description": "HTTP Headers ek mail hai ko freind ko send krne hai so it will send via any serivice same that friend will do that",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
