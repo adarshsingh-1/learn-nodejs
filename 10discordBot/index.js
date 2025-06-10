@@ -43,4 +43,4 @@ client.on('interactionCreate',interaction => {
     interaction.reply('Honk!!')
     
 })
-client.login('MTM4MjA0ODg0OTE1NzQyNzMzMQ.GLZgfF.mPifnyxbS-953rga71lWjSTBIF1EeuS4fXkupw')
+client.login('***************'); // Replace with your bot token
