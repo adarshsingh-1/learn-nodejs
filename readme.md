@@ -55,6 +55,7 @@ npm -v    # To check npm version
 
 ## . Why They Are Not in Node.js?
 - Node.js is a **server-side runtime**, not a browser.
+"they" in this context means the browser-specific features—specifically, the window object and DOM APIs—that are not present or needed in Node.js.
 - It **does not have access to the browser environment**.
 - Since there is **no webpage or GUI**, there is no need for:
   - `window` object
