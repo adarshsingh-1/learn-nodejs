@@ -1,0 +1,14 @@
+If we are building a realtime chat application 
+
+there are two options 
+
+the client can ping the server at regular intervals to check for new messages this is called polling.
+
+
+or the server can push new messages to the client as they arrive. this is called server-sent events or websockets.
+
+Upgrade Header
+The HTTP Upgrade request and response header can be used to upgrade an already-established client/server connection to a different protocol (over the same transport protocol). For example, it can be used by a client to upgrade a connection from HTTP/1.1 to HTTP/2, or an HTTP(S) connection to a WebSocket connection.
+
+
+Socket.IO is a library that enables low-latency, bidirectional and event-based communication between a client and a server.

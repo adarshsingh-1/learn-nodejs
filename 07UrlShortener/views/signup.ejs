@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        input, button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ddd;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <form  action="/user" method="post">
+            <label>Full Name</label>
+            <input type="text" required name="name"/>
+            <label>Email</label>
+            <input type="email" required name="email"/>
+            <label>Password</label>
+            <input type="password" required name="password"/>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

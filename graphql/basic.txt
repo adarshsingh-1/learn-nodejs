@@ -1,0 +1,36 @@
+The Over-Fetching Problem
+
+The Issue
+When a user only needs one data field like created_by or email, sending all user data is wasteful.
+
+
+Problems This Creates
+Unnecessary data transfer
+Increased bandwidth usage
+Slower response times
+Security concerns (exposing sensitive data)
+
+
+for example:
+User wants: just the email
+Database returns: name, email, password, phone, address, created_by, etc.
+Result: 90% wasted data transfer
+
+
+Solution: Field Selection
+Only fetch what you need from the database.
+
+
+Benefits
+Faster responses
+Less bandwidth used
+Better security
+Improved performance
+
+
+
+What does GraphQL Do?
+Client specifies exactly what data it needs.
+if the Client need title the server will return only title.
+
+

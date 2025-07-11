@@ -1,0 +1,56 @@
+What is Serverless Architecture? How is it different from traditional (non-serverless) architecture?
+
+As a backend engineer, when we write APIs—whether REST or GraphQL—they need to be hosted on a server. In traditional (non-serverless) architecture, we typically use virtual machines like AWS EC2 where we configure the server manually. For example, we might use a machine with 2GB RAM and 500GB storage.
+
+The cost in this setup is usually per hour. For instance, if the charge is $0.02 per hour, running the server 24/7 for 30 days would cost:
+$0.02 × 24 hours × 30 days = $14.40 per month
+
+
+Scaling in Non-Serverless:
+
+In case of increased traffic, we need to manually configure an Auto Scaling Group that provisions more instances, say scaling up to 6GB RAM and 1TB storage.
+But in this approach:
+We need to manage the operating system
+Handle code deployments
+Take care of server maintenance and scaling
+
+***********************************************************************************************
+
+What is Serverless Architecture and its Benefits?
+In Serverless Architecture, you only write your code—you don’t manage the underlying infrastructure.
+
+For example, using AWS Lambda:
+You don't need to decide which OS to use.
+You don't allocate memory or storage manually.
+You don’t manage scaling.
+
+AWS automatically:
+Decides how much RAM, storage, and compute power is required.
+Handles auto-scaling based on incoming traffic.
+
+
+Key Benefits of Serverless (AWS Lambda example):
+Pay-as-you-go model:
+
+You are charged only when your code is running.
+Example: $0.001 per invocation.
+
+If your website has 0 traffic, your code doesn’t run → no cost.
+If you have 1,000 requests, you pay only for the actual execution time.
+
+If traffic increases, Lambda automatically spins up more instances.
+If traffic decreases, instances are removed—no manual intervention.
+
+Short Execution Duration:
+Each invocation has a maximum execution time (e.g., 25 seconds).
+
+Serverless is ideal for applications with variable or unpredictable traffic where you want to minimize operational overhead and only pay for actual usage. Traditional servers may still be preferred for long-running processes or applications requiring full control over the environment.
+
+
+Disadvantages of Serverless:
+Cold Start Latency:
+When a function is invoked after a period of inactivity, there may be a delay (cold start) as the serverless platform initializes the environment.
+This can lead to slower response times for the first request after a period of inactivity.
+Stateless Nature:
+Serverless functions are stateless, meaning they do not retain any data between invocations.
+This requires external storage solutions (like databases) for state management, which can add complexity.

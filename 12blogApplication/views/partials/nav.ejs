@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-3 shadow-sm">
+  <a class="navbar-brand fw-bold fs-4" href="/">Wordify</a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+      </li>
+
+      <% if (user) { %>
+      <li class="nav-item mx-3 d-flex align-items-center">
+        <span class="nav-link fw-semibold text-white">
+          <%= user.fullName %> 
+        </span>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a class="nav-link btn btn-outline-light rounded-pill px-3" href="/blog/add-new">Add Blog</a>
+      </li>
+      <% } else { %>
+
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="/user/signup">Create Account</a>
+      </li>
+
+      <li class="nav-item mx-2">
+        <a class="nav-link" href="/user/signin">Signin</a>
+      </li>
+
+      <% } %>
+    </ul>
+
+    <% if (user) { %>
+    <div class="d-flex align-items-center gap-3">
+      <% if (user.profileImageURL) { %>
+        <img src="<%= user.profileImageURL %>" alt="Profile" width="35" height="35" class="rounded-circle">
+      <% } %>
+      <a href="/user/logout" class="btn btn-danger btn-sm rounded-pill">Logout</a>
+    </div>
+    <% } %>
+
+  </div>
+</nav>
