@@ -1,0 +1,35 @@
+Suppose you're serving a 400MB file using fs.readFile(). What are the potential issues with this approach?
+
+
+If we use fs.readFile() to read a 400MB file, the entire file content gets loaded into memory and stored in a local variable before being sent as a response. So, during this short period, the full 400MB file resides in the server’s memory.
+
+Now, imagine if 100 users try to access this file simultaneously. In that case, 100 copies of the file will be loaded into memory — that’s:
+
+400MB x 100 users = 40,000MB (or ~40GB of memory)
+This can easily lead to memory exhaustion, slow performance, or even a server crash. Hence, this approach is not memory efficient and doesn't scale well under heavy traffic.
+
+
+What’s a better way to handle large files in such cases?
+
+A better and more efficient solution is to use streams. Instead of loading the entire file into memory at once, streams allow us to read the file in smaller chunks.
+
+When we stream a file, only a portion of the file (e.g., 64KB by default) is read into memory at a time and immediately sent to the client. This way:
+
+    We reduce memory usage significantly.
+
+    The server can handle hundreds of users concurrently without crashing.
+
+    It’s faster and more scalable, especially for large files.
+
+Here’s a simple example of using streams in Node.js:
+const fs = require('fs');
+const http = require('http');
+
+http.createServer((req, res) => {
+  const stream = fs.createReadStream('largefile.txt');
+  stream.pipe(res);
+}).listen(3000);
+This approach ensures we send the file efficiently without overloading server memory.
+
+
+Data is sent in a series of chunks. Content can be sent in streams of unknown size to be transferred as a sequence of length-delimited buffers, so the sender can keep a connection open, and let the recipient know when it has received the entire message. The Content-Length header must be omitted, and at the beginning of each chunk, a string of hex digits indicate the size of the chunk-data in octets, followed by \r\n and then the chunk itself, followed by another \r\n. The terminating chunk is a zero-length chunk.
