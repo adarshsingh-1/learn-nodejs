@@ -1,0 +1,20 @@
+NGINX is a powerful web server and uses a non threaded, event-driven architecture.
+
+It can also do other things, such as load balancing, reverse proxying, http caching, and serving static files efficiently.
+
+what is forward proxying?
+A forward proxy is a server that sits between a client (like a user or a device) and the internet. It acts on behalf of the client to send requests to external servers.
+
+In simple terms, when a client wants to access a resource (like a website), it sends the request to the forward proxy. The proxy then forwards that request to the target server, gets the response, and sends it back to the client.
+
+What is reverse proxying?
+A reverse proxy is a server that sits in front of one or more backend servers and handles client requests on their behalf. Instead of the client talking directly to the backend server, it talks to the reverse proxy, which then forwards the request to the appropriate backend and returns the response.
+
+
+Can Handle 10,000 Concurrent Requests
+• Cache HTTP Requests
+• Act as Reverse Proxy
+• Act as Load Balancer
+• Act as an API Gateway
+• Serve and Cache Static files like images, videos, etc.
+• Handle SSL Certificates

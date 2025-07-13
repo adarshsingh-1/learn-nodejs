@@ -1,0 +1,46 @@
+Clusters of Node.js processes can be used to run multiple instances of Node.js that can distribute workloads among their application threads. When process isolation is not needed, use the worker_threads module instead, which allows running multiple application threads within a single Node.js instance.
+
+
+Can you explain how the cluster module works in Node.js and why it's used?
+The cluster module in Node.js is used to take advantage of multi-core systems. Since Node.js is single-threaded by default, it can only utilize one core. To scale applications and handle more requests concurrently, the cluster module allows us to spawn multiple worker processes that run simultaneously.
+
+Each worker is created using child_process.fork() and has a communication channel (IPC) with the primary process. These workers can share the same server port, which enables load balancing across CPU cores.
+
+
+
+
+************************************************
+
+How does Node.js distribute incoming connections to worker processes?
+Node.js supports two methods of connection distribution:
+
+1. Round-robin approach (default on UNIX-like systems):
+    The primary process listens on a port and distributes connections to workers in a round-robin fashion. This avoids overloading a single worker and provides better load balancing.
+
+2. Shared socket approach:
+    The primary process creates the socket and hands it off to the workers, which then accept connections themselves. While this can theoretically provide better performance, in practice it's often unbalanced due to OS-level scheduling quirks.
+
+
+*****************************************
+
+
+Can you mention any edge cases or important considerations when using cluster?
+
+es. A few key things to keep in mind:
+
+    server.listen(0) — Normally this binds to a random port, but in a cluster, all workers get the same port unless handled explicitly.
+
+    Workers don’t share memory, so relying on in-memory session storage isn’t safe. A shared external store like Redis is recommended.
+
+    If a worker crashes, it won’t affect others. However, Node.js doesn’t auto-manage worker counts, so the application must handle respawning and scaling logic.
+
+    Socket/file descriptor behavior may differ in a cluster vs. standalone processes, especially with things like server.listen({fd: x}).
+
+
+******************************************
+
+
+
+Besides networking, is the cluster module useful elsewhere?
+
+Yes. While it's mainly used to handle high-load networking applications, the cluster module is also suitable for parallelizing CPU-intensive tasks by distributing them across multiple processes.
